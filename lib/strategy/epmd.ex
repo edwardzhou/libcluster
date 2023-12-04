@@ -36,7 +36,7 @@ defmodule Cluster.Strategy.Epmd do
 
   def handle_info(:heartbeat, %State{config: config} = state) do
     handle_heartbeat(state)
-    Process.send_after(self, :heartbeat, :rand.uniform(Keyword.get(config, :heartbeat, 3_000)))
+    Process.send_after(self(), :heartbeat, :rand.uniform(Keyword.get(config, :heartbeat, 3_000)))
     {:noreply, state}
   end
 
